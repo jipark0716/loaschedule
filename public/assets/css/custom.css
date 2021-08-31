@@ -1,0 +1,17 @@
+select.week-content-checkbox {
+    width: 30px;
+    appearance: none;
+    height: 30px;
+    text-align-last: center;
+    border-radius: 5px;
+    background: #fff;
+}
+select.week-content-checkbox[disabled] {
+    background: #ccc;
+}
+img.class-image {
+    height:30px;
+}
+.not-active {
+    background: #ccc !important;
+}
