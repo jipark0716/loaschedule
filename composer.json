@@ -12,6 +12,9 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
+        "guzzlehttp/psr7": "1.7",
+        "kreait/firebase-php": "5.19",
+        "kreait/laravel-firebase": "3.1",
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
         "larsjanssen6/underconstruction": "^6.1"

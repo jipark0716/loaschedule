@@ -157,6 +157,20 @@
 
 @section('scripts')
 <script type="text/javascript">
+messaging.addEventListener('week-work', (data) => {
+    let work = JSON.parse(data.work)
+    let obj = $(`[data-character-id=${work.character}][data-content-id=${work.content}]`)
+    if (obj.is('input[type=checkbox]')) {
+        obj.prop('checked', work.step)
+    } else {
+        obj.val(work.step)
+    }
+})
+messaging.addEventListener('day-work', (data) => {
+    let work = JSON.parse(data.work)
+    $(`.day-content-checkbox[data-character-id=${work.character}][data-content-id=${work.content}]`).prop('checked', work.on)
+    setRestView(work.character, work.content, data.rest)
+})
 let restUse = {
     카던: 40,
     가디언: 40,

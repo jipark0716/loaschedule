@@ -13,6 +13,8 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500" rel="stylesheet" />
         <link href="{{ asset('lib/css/styles.css') }}" rel="stylesheet" />
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-messaging.js"></script>
     </head>
     <body class="nav-fixed bg-light">
         <nav class="top-app-bar navbar navbar-expand navbar-dark bg-dark">
@@ -60,6 +62,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script type="module" src="{{ asset('lib/js/material.js') }}"></script>
         <script src="{{ asset('lib/js/scripts.js') }}"></script>
+        <script src="{{ asset('js/firebase-init.js') }}"></script>
         <script src="{{ asset('js/app.js') }}"></script>
         @yield('scripts')
     </body>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\{WeekWork, DayWork, Character};
+use Kreait\Firebase\Messaging\CloudMessage;
 
 class ContentContoller extends Controller
 {
@@ -44,6 +45,15 @@ class ContentContoller extends Controller
                 ->where('type', 'account')
                 ->delete();
         }
+        app('firebase.messaging')->send(
+            CloudMessage::fromArray([
+                'topic' => 'all',
+                'data' => [
+                    'event_type' => 'week-work',
+                    'work' => json_encode($request->only('character', 'content', 'step')),
+                ],
+            ])
+        );
     }
 
     /**
@@ -102,6 +112,17 @@ class ContentContoller extends Controller
             $work->delete();
         }
         $character->save();
+
+        app('firebase.messaging')->send(
+            CloudMessage::fromArray([
+                'topic' => 'all',
+                'data' => [
+                    'event_type' => 'day-work',
+                    'rest' => $character->{$restField},
+                    'work' => json_encode($request->only('character', 'content', 'on')),
+                ],
+            ])
+        );
 
         return [
             'rest' => $character->{$restField},

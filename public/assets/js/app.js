@@ -1,5 +1,4 @@
 let setWork = (characterId, contentId, step) => {
-    console.log(characterId, contentId, step);
     $.ajax({
         url: '/api/content/week',
         method: 'post',
