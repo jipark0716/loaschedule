@@ -30,4 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'discord' => [
+        'root' => 'https://discord.com/api/',
+        'client_id' => env('DISCORD_CLIENT_ID'),
+        'secret' => env('DISCORD_CLIENT_SECRET'),
+        'bot' => env('DISCORD_BOT_TOKEN')
+    ],
+
 ];

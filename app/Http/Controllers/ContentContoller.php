@@ -21,6 +21,10 @@ class ContentContoller extends Controller
             'content' => 'required|integer',
             'step' => 'required|integer',
         ]);
+        $character = Character::find($request->character);
+        if ($character->isHasScope()) {
+            abort(400);
+        }
         if ($request->step) {
             $work = WeekWork::now()
                 ->where('target_id', $request->character)
@@ -93,6 +97,9 @@ class ContentContoller extends Controller
                 'content' => $request->content,
                 'before_rest' => $character->{$restField},
             ]);
+            if ($character->isHasScope()) {
+                abort(400);
+            }
             if ($character->{$restField} > ($restCnt * 20)) {
                 $character->{$restField} -= $restCnt * 20;
             } else {
@@ -108,21 +115,26 @@ class ContentContoller extends Controller
                 abort(400);
             }
 
+            if ($character->isHasScope()) {
+                abort(400);
+            }
             $character->{$restField} = $work->before_rest;
             $work->delete();
         }
         $character->save();
 
-        app('firebase.messaging')->send(
-            CloudMessage::fromArray([
-                'topic' => 'all',
-                'data' => [
-                    'event_type' => 'day-work',
-                    'rest' => $character->{$restField},
-                    'work' => json_encode($request->only('character', 'content', 'on')),
-                ],
-            ])
-        );
+        dispatch(function () use ($character, $restField, $request) {
+            app('firebase.messaging')->send(
+                CloudMessage::fromArray([
+                    'topic' => 'all',
+                    'data' => [
+                        'event_type' => 'day-work',
+                        'rest' => $character->{$restField},
+                        'work' => json_encode($request->only('character', 'content', 'on')),
+                    ],
+                ])
+            );
+        })->afterResponse();
 
         return [
             'rest' => $character->{$restField},
@@ -154,6 +166,9 @@ class ContentContoller extends Controller
         }
 
         $character = Character::findOrFail($request->character);
+        if ($character->isHasScope()) {
+            abort(400);
+        }
         $character->{$restField} = $request->val;
         $character->save();
     }

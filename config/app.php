@@ -14,6 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'ssl' => env('SSL', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +40,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool) ($_SERVER['REMOTE_ADDR'] == '192.168.0.1' ? true : env('APP_DEBUG', false)),
 
     /*
     |--------------------------------------------------------------------------

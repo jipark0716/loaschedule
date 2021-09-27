@@ -2,12 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\{Model, Builder};
 use GuzzleHttp\Client as Guzzle;
 
 class Account extends Model
 {
     public $fillable = ['nick_name', 'main_character'];
+
+    protected static function booted()
+    {
+        parent::boot();
+
+        static::addGlobalScope('sequence', function(Builder $query) {
+            $query->orderBy('sequence');
+        });
+    }
 
     /**
      * 원정대 캐릭터 수집

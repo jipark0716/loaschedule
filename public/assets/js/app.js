@@ -1,3 +1,9 @@
+if (sslUse && location.protocol == 'http:') {
+    location.href = 'https://'+location.host+location.pathname
+} else if (!sslUse && location.protocol == 'https:') {
+    location.href = 'http://'+location.host+location.pathname
+}
+
 let setWork = (characterId, contentId, step) => {
     $.ajax({
         url: '/api/content/week',
@@ -40,4 +46,13 @@ let setRest = (characterId, contentId, val) => {
             val: val,
         }),
     })
+}
+
+let copy = (val) => {
+    const t = document.createElement("textarea")
+    document.body.appendChild(t)
+    t.value = val
+    t.select()
+    document.execCommand('copy')
+    document.body.removeChild(t)
 }
