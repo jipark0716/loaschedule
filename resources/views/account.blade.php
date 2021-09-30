@@ -36,11 +36,11 @@
                         <tr>
                             <th scope="row">
                                 <button
-                                 class="btn btn-text-primary"
+                                 class="btn btn-text-primary character-button"
                                  type="button"
                                  data-bs-toggle="tooltip"
                                  data-bs-placement="top"
-                                 onclick='copy(@json($character->name))'
+                                 data-nick-name="{{ $character->name }}"
                                  title="{{ $character->class }} / {{ number_format($character->item_level) }}">
                                     {{ $character->name }}
                                 </button>
@@ -104,11 +104,11 @@
                         <tr>
                             <th scope="row" rowspan="2">
                                 <button
-                                 class="btn btn-text-primary"
+                                 class="btn btn-text-primary character-button"
                                  type="button"
                                  data-bs-toggle="tooltip"
                                  data-bs-placement="top"
-                                 onclick='copy(@json($character->name))'
+                                 data-nick-name="{{ $character->name }}"
                                  title="{{ $character->class }} / {{ number_format($character->item_level) }}">
                                     {{ $character->name }}
                                 </button>
@@ -170,11 +170,11 @@
                         <tr>
                             <th scope="row">
                                 <button
-                                 class="btn btn-text-primary"
+                                 class="btn btn-text-primary character-button"
                                  type="button"
                                  data-bs-toggle="tooltip"
                                  data-bs-placement="top"
-                                 onclick='copy(@json($character->name))'
+                                 data-nick-name="{{ $character->name }}"
                                  title="{{ $character->class }} / {{ number_format($character->item_level) }}">
                                     {{ $character->name }}
                                 </button>

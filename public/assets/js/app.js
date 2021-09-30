@@ -4,6 +4,11 @@ if (sslUse && location.protocol == 'http:') {
     location.href = 'http://'+location.host+location.pathname
 }
 
+function openNewTab(url) {
+    var win = window.open(url, '_blank');
+    win.focus();
+}
+
 let setWork = (characterId, contentId, step) => {
     $.ajax({
         url: '/api/content/week',
@@ -56,3 +61,12 @@ let copy = (val) => {
     document.execCommand('copy')
     document.body.removeChild(t)
 }
+
+$('.character-button').click((event) => {
+    let name = $(event.target).attr('data-nick-name')
+    if (window.event.ctrlKey) {
+        openNewTab(`https://lostark.game.onstove.com/Profile/Character/${name}`)
+    } else {
+        copy(name)
+    }
+})
