@@ -47,7 +47,7 @@
                             </a>
                             <div class="active collapse show" id="collapseDashboards" aria-labelledby="headingOne" data-bs-parent="#drawerAccordion">
                                 <nav class="drawer-menu-nested nav">
-                                    @foreach (App\Models\Account::where('user_id', \Auth::id())->get() as $account)
+                                    @foreach (App\Models\Account::where('user_id', Auth::id())->get() as $account)
                                         <a class="nav-link" href="{{ route('account', $account) }}">{{ $account->nick_name }}</a>
                                     @endforeach
                                 </nav>
@@ -56,18 +56,12 @@
                                 <div class="nav-link-icon"><i class="material-icons">library_books</i></div>
                                 도서관
                             </a>
-                            {{-- <a class="nav-link collapsed" href="{{ route('setting.helper') }}">
-                                <div class="nav-link-icon"><i class="material-icons">calculate</i></div>
-                                세팅도우미
-                            </a>
-                            <a class="nav-link collapsed" href="{{ route('shop.monitoring') }}">
-                                <div class="nav-link-icon"><i class="material-icons">shopping_cart</i></div>
-                                경매장
-                            </a>
-                            <a class="nav-link collapsed" href="{{ route('master.cosplay') }}">
-                                <div class="nav-link-icon"><i class="material-icons">thumb_down_off_alt</i></div>
-                                숙코노트
-                            </a> --}}
+                            @if (Auth::user()->guild_id)
+                                <a class="nav-link collapsed" href="{{ route('party.home') }}">
+                                    <div class="nav-link-icon"><i class="material-icons">group</i></div>
+                                    길드팟
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </nav>
@@ -92,7 +86,6 @@
         <script src="https://naver.github.io/billboard.js/release/latest/dist/billboard.min.js" charset="utf-8"></script>
         <script type="text/javascript">
             $(document).ajaxError(function myErrorHandler(event, xhr, ajaxOptions, thrownError) {
-                console.log(1234);
                 toastr.error('뭔가잘못됨', '새로고침하세요')
             });
             $.ajaxSetup({

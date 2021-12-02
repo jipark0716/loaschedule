@@ -65,6 +65,14 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => 'cdn-up.byapps.co.kr',
+            'username' => 'byapps1',
+            'password' => 'qkdldoqtm1*',
+            'port' => 21,
+            'passive' => true,
+        ],
     ],
 
     /*

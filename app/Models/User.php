@@ -83,4 +83,17 @@ class User extends Auth
             'id'
         );
     }
+
+    public function getGuildNameAttribute()
+    {
+        return \Cache::remember(60, 'GUILD_NAME_'.$this->guild_id, function() {
+            $guildRes = Http::withHeaders([
+                'authorization' => 'Bot '.config('app.discord.token'),
+            ])->get('https://discord.com/api/v'.config('app.discord.version').'/guilds/'.$this->guild_id);
+            if ($guildRes->json() != null) {
+                return $guildRes->json()['name'];
+            }
+            return $this->guild_id;
+        });
+    }
 }

@@ -17,7 +17,9 @@
         "kreait/laravel-firebase": "3.1",
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
-        "larsjanssen6/underconstruction": "^6.1"
+        "larsjanssen6/underconstruction": "^6.1",
+        "league/flysystem-aws-s3-v3": "~1.0",
+        "league/flysystem-sftp": "~1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

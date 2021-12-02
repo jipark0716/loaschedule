@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Storage;
 
 class Test extends Command
 {
@@ -11,7 +12,7 @@ class Test extends Command
      *
      * @var string
      */
-    protected $signature = 'test';
+    protected $signature = 'test {bucket}';
 
     /**
      * The console command description.
@@ -37,17 +38,23 @@ class Test extends Command
      */
     public function handle()
     {
-        $players = 100;
-        $success = 3;
-        $r = 0;
-        $result1 = [];
-        $result2 = [];
-        while ($r < 100) {
-            $result1[] = round($r, 3);
-            $players = $players - ($players * ($success / 100));
-            $r += $success / 2;
-            $result2[] = round(100 - $players, 3);
+        $storage = Storage::createS3Driver(array_merge(config('filesystems.disks.s3'), [
+            'bucket' => $this->argument('bucket')
+        ]));
+
+        $files = $storage->files();
+
+        $bar = $this->output->createProgressBar(count($files));
+        $bar->start();
+
+        foreach ($files as $fileName) {
+            if (!Storage::disk('ftp')->exists('byapps-app-popbanner/'.$fileName)) {
+                Storage::disk('ftp')->put('byapps-app-popbanner/'.$fileName, $storage->get($fileName));
+            }
+            $bar->advance();
         }
-        dd(json_encode($result1), json_encode($result2));
+        $bar->finish();
+
+        $this->info('success');
     }
 }

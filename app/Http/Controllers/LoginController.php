@@ -51,7 +51,9 @@ class LoginController extends Controller
                 'name' => $user['user']['username'],
                 'access_token' => $token['access_token'],
                 'refresh_token' => $token['refresh_token'],
+                'expires' => Carbon::parse(time() + $token['expires_in']),
             ]);
+            $model->save();
         } else {
             $model = User::create([
                 'name' => $user['user']['username'],

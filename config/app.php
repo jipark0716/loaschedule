@@ -16,6 +16,11 @@ return [
     'name' => env('APP_NAME', 'Laravel'),
     'ssl' => env('SSL', true),
 
+    'discord' => [
+        'version' => 9,
+        'token' => env('DISCORD_BOT_TOKEN', null),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

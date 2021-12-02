@@ -33,4 +33,6 @@ Route::middleware('auth')->group(function() {
         Route::post('content/rest', 'ContentContoller@rest')->name('account');
         Route::post('fcm/init', 'FcmToken@put');
     });
+
+    Route::get('party', 'PartyController')->name('party.home');
 });
