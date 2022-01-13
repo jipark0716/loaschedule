@@ -96,4 +96,9 @@ class User extends Auth
             return $this->guild_id;
         });
     }
+
+    public function account()
+    {
+        return $this->hasMany(Account::class, 'user_id', 'id');
+    }
 }

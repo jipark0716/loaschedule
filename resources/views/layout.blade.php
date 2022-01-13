@@ -16,6 +16,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" rel="stylesheet" />
         <link href="https://naver.github.io/billboard.js/release/latest/dist/billboard.min.css" rel="stylesheet">
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
         <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-messaging.js"></script>
     </head>
@@ -77,6 +78,7 @@
         </script>
         <script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/select-picker.js') }}"></script>
         <script type="module" src="{{ asset('lib/js/material.js') }}"></script>
         <script src="{{ asset('lib/js/scripts.js') }}"></script>
         <script src="{{ asset('js/firebase-init.js') }}"></script>
@@ -84,6 +86,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://d3js.org/d3.v6.min.js"></script>
         <script src="https://naver.github.io/billboard.js/release/latest/dist/billboard.min.js" charset="utf-8"></script>
+        <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
         <script type="text/javascript">
             $(document).ajaxError(function myErrorHandler(event, xhr, ajaxOptions, thrownError) {
                 toastr.error('뭔가잘못됨', '새로고침하세요')

@@ -9,6 +9,36 @@ use GuzzleHttp\Client as Guzzle;
 class Character extends Model
 {
     public $fillable = ['item_level', 'level', 'server', 'account_id', 'c_rest', 'g_rest', 'name', 'sequence', 'class', 'description'];
+    public static $className = [
+        '전사' => 'warrior',
+        '디스트로이어' => 'destroyer',
+        '워로드' => 'warlord',
+        '버서커' => 'berserker',
+        '홀리나이트' => 'holyknight',
+        '무도가(남)' => 'fightermale',
+        '스트라이커' => 'striker',
+        '무도가(여)' => 'fighterfemale',
+        '배틀마스터' => 'battlemaster',
+        '인파이터' => 'infighter',
+        '기공사' => 'soulmaster',
+        '창술사' => 'lancemaster',
+        '헌터(남)' => 'huntermale',
+        '데빌헌터' => 'devilhunter',
+        '블래스터' => 'blaster',
+        '호크아이' => 'hawkeye',
+        '스카우터' => 'scouter',
+        '헌터(여)' => 'hunterfemale',
+        '건슬링어' => 'gunslinger',
+        '마법사' => 'magician',
+        '바드' => 'bard',
+        '서머너' => 'summoner',
+        '아르카나' => 'arcana',
+        '소서리스' => 'sorceress',
+        '암살자' => 'assassin',
+        '블레이드":"bla' => 'active',
+        '데모닉' => 'demonic',
+        '리퍼' => 'reaper',
+    ];
 
     protected static function booted()
     {
@@ -37,16 +67,6 @@ class Character extends Model
     public function day()
     {
         return $this->hasMany(DayWork::class, 'character_id', 'id')->where('day', now()->format('YWw'));
-    }
-
-    public function getClassImageAttribute()
-    {
-        $class = Classes::all()->where('name', $this->class)->first();
-        if ($class) {
-            return $class->image;
-        } else {
-            return '';
-        }
     }
 
     public function getBuffAttribute()
@@ -129,6 +149,17 @@ class Character extends Model
 
     public function isHasScope()
     {
+        return !1;
         return $this->account->user_id !== \Auth::id();
+    }
+
+    public function getEnClassAttribute()
+    {
+        return self::$className[$this->class];
+    }
+
+    public function getClassImageAttribute()
+    {
+        return "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/thumb/emblem_".$this->en_class.".png";
     }
 }

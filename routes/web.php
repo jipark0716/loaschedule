@@ -35,4 +35,8 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::get('party', 'PartyController')->name('party.home');
+    Route::post('party/create', 'PartyController@create')->name('party.create');
+    Route::get('party/account/{party}', 'PartyController@partyAccount');
+    Route::get('party/account/{party}/character/{account}', 'PartyController@partyCharacter');
+    Route::post('party/{party}/member', 'PartyController@addMembers');
 });
